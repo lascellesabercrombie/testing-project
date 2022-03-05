@@ -1,7 +1,6 @@
 const output = document.querySelector("output");
 const form = document.querySelector("form");
 const input = document.querySelector("input");
-// const checkbox = document.querySelector(".checkbox");
 
 let numberOfItems = 0;
 
@@ -33,10 +32,7 @@ function addToDoItem(event) {
 }
 
 function noteChecker (e) {
-    console.log('x')
-    console.log(e.target)
     if (e.target.checked) {
-        console.log('check')
         
         document.querySelector(`#item-${numberOfItems} > h2`).classList.add("checked");
     }

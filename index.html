@@ -7,11 +7,28 @@
     <link rel="stylesheet" type="text/css" href="./styles.css">
     <title>Testing-Project</title>
 </head>
-
-<script src="./test-helpers.js"></script>
-<script src="./index.js"></script>
-<script src="./index.test.js"></script>
 <body>
-    
+    <main>
+        <header><h1>To Do List</h1></header>
+        <form>
+            <label for="toDoInput">Add to do list item</label>
+            <input id="toDoInput" type="text"/>
+
+            <button type="submit">Add Item</button>
+        </form>
+        <output>
+
+        </output>
+        <template id="toDoTemplate" class="hide">
+            <article name="toDoItem">
+                <h2></h2>
+                <button type="submit" name="deleteBtn">Delete Item</button>
+            </article>
+        </template>
+    </main>
+
+    <script src="./test-helpers.js"></script>
+    <script src="./index.js"></script>
+    <script src="./index.test.js"></script>
 </body>
 </html>

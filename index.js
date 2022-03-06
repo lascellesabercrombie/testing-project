@@ -22,8 +22,7 @@ function addToDoItem(event) {
 
     domFragment.querySelector("article").setAttribute("id", `item-${numberOfItems}`);
     domFragment.querySelector("h2").textContent = toDoItem;
-    //deleteBtn.setAttribute("id", `delete-${numberOfItems}`);
-    //deleteBtn.addEventListener('click', deleteToDoItem);
+    deleteBtn.addEventListener('click', deleteToDoItem);
     checkbox.addEventListener('change', noteChecker);
 
     output.appendChild(domFragment)
@@ -41,7 +40,9 @@ function noteChecker (e) {
     }
 }
 
-/* 
-function deleteToDoItem() {
 
-} */
+function deleteToDoItem(e) {
+    // e.path[0] is the button itself, e.path[1] is the parent element (The to do item) that wants deleting. 
+    let parentElement = e.path[1];
+    parentElement.remove();
+}

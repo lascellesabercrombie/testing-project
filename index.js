@@ -17,17 +17,28 @@ function addToDoItem(event) {
     const template = document.querySelector("template");
     const domFragment = template.content.cloneNode(true);
 
+    const checkbox =  domFragment.querySelector("input[type=checkbox]");
     const deleteBtn = domFragment.querySelector("button")
 
     domFragment.querySelector("article").setAttribute("id", `item-${numberOfItems}`);
     domFragment.querySelector("h2").textContent = toDoItem;
-
     //deleteBtn.setAttribute("id", `delete-${numberOfItems}`);
     //deleteBtn.addEventListener('click', deleteToDoItem);
+    checkbox.addEventListener('change', noteChecker);
 
     output.appendChild(domFragment)
 
     form.reset();
+}
+
+function noteChecker (e) {
+    if (e.target.checked) {
+        
+        document.querySelector(`#item-${numberOfItems} > h2`).classList.add("checked");
+    }
+    else{
+        document.querySelector(`#item-${numberOfItems} > h2`).classList.remove("checked");
+    }
 }
 
 /* 

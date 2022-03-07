@@ -31,13 +31,7 @@ function addToDoItem(event) {
 }
 
 function noteChecker (e) {
-    if (e.target.checked) {
-        
-        document.querySelector(`#item-${numberOfItems} > h2`).classList.add("checked");
-    }
-    else{
-        document.querySelector(`#item-${numberOfItems} > h2`).classList.remove("checked");
-    }
+        document.querySelector(`#item-${numberOfItems} > h2`).classList.toggle("checked");
 }
 
 

@@ -34,9 +34,15 @@ function addToDoItem(event) {
 function noteChecker (e) {
         let note = e.composedPath()[1];
         document.querySelector(`#${note.id} > h2`).classList.toggle("checked");
-        note.remove();
-        filtered.append(note);        
-    }
+        if (e.target.checked){
+            note.remove();
+            filtered.append(note);
+        }
+        else{
+            note.remove();
+            output.append(note);
+        }        
+}
 
 
 function deleteToDoItem(e) {

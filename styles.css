@@ -11,7 +11,6 @@
 
 .checked {
     text-decoration: line-through;
-
 }
 
 /* Credit: https://codepen.io/32bitkid/details/Ihciy */
@@ -26,3 +25,34 @@
     display: inline-block;
     margin-bottom: 45px;
 }
+
+.title-text {
+    color: #1D6036;
+}
+
+/* Source: https://www.w3.org/WAI/tutorials/forms/labels/#note-on-hiding-elements */
+.visuallyhidden {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+  }
+
+article {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-around;
+    border: black solid 2px;
+    background-color: white;
+    padding: 0.1em;
+}
+
+article > h2 {
+    background-color: inherit;
+}
+

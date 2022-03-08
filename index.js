@@ -1,12 +1,11 @@
 const output = document.querySelector("output");
 const form = document.querySelector("form");
 const input = document.querySelector("input");
-const filtered = document.querySelector("#filtered")
+const filtered = document.querySelector("#filtered");
 
 let numberOfItems = 0;
 
 form.addEventListener("submit", (event) => addToDoItem(event));
-//document.querySelector('button[name=deleteBtn]').addEventListener('click', deleteToDoItem);
 
 function addToDoItem(event) {
     event.preventDefault();
@@ -19,14 +18,19 @@ function addToDoItem(event) {
     const domFragment = template.content.cloneNode(true);
 
     const checkbox =  domFragment.querySelector("input[type=checkbox]");
-    const deleteBtn = domFragment.querySelector("button")
+    const deleteBtn = domFragment.querySelector("button");
+    const arrows = domFragment.querySelectorAll(".arrowBox");
+    const upArrow = arrows[0];
+    const downArrow = arrows[1];
 
     domFragment.querySelector("article").setAttribute("id", `item-${numberOfItems}`);
-    domFragment.querySelector("h2").textContent = toDoItem;
+    domFragment.querySelectorAll("h2")[1].textContent = toDoItem;
     deleteBtn.addEventListener('click', deleteToDoItem);
     checkbox.addEventListener('change', noteChecker);
+    upArrow.addEventListener("click", moveUp);
+    downArrow.addEventListener("click", moveDown);
 
-    output.appendChild(domFragment)
+    output.appendChild(domFragment);
 
     form.reset();
 }
@@ -46,8 +50,7 @@ function noteChecker (e) {
 
 
 function deleteToDoItem(e) {
-    // e.path[0] is the button itself, e.path[1] is the parent element (The to do item) that wants deleting. 
-    let parentElement = e.path[1];
+    let parentElement = e.composedPath()[1];
     parentElement.remove();
 }
 
@@ -63,3 +66,17 @@ function deleteToDoItem(e) {
 //     }
 // }
 // document.addEventListener("click", addStave);
+
+function moveUp(e) {
+    let parentElement = e.composedPath()[2];
+    if (parentElement.previousElementSibling !== null) {
+        parentElement.parentNode.insertBefore(parentElement, parentElement.previousElementSibling);
+    };
+};
+
+function moveDown(e) {
+    let parentElement = e.composedPath()[2];
+    if (parentElement.nextElementSibling !== null) {
+        parentElement.parentNode.insertBefore(parentElement.nextElementSibling, parentElement);
+    };
+};

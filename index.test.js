@@ -225,6 +225,7 @@ test("checking an item moves it from output to filtered div", () => {
 
     equal(actualOutputChildren, expectedOutputChildren);
     equal(actualFilteredChildren, expectedFilteredChildren);
+    equal()
     numberOfItems = 0;
     output.innerHTML = '';
     filtered.innerHTML = '';
@@ -248,6 +249,7 @@ test("checking an item twice returns it from filtered div to output", () => {
     const expectedOutputChildren = 1;
     const actualFilteredChildren = filtered.childElementCount;
     const expectedFilteredChildren = 0;
+
 
     equal(actualOutputChildren, expectedOutputChildren);
     equal(actualFilteredChildren, expectedFilteredChildren);
@@ -278,6 +280,12 @@ test("checking multiple items filters them and not others", () => {
     checkButton1.click();
     checkButton2.click();
 
+    const actualFirstOutputChildID = output.firstElementChild.id;
+    const expectedFirstOutputChildID = 'item-3'
+
+    const actualFirstFilteredChildID = filtered.firstElementChild.id;
+    const expectedFirstFilteredChildID = 'item-1'
+
     const actualOutputChildren = output.childElementCount;
     const expectedOutputChildren = 1;
     const actualFilteredChildren = filtered.childElementCount;
@@ -285,6 +293,8 @@ test("checking multiple items filters them and not others", () => {
 
     equal(actualOutputChildren, expectedOutputChildren);
     equal(actualFilteredChildren, expectedFilteredChildren);
+    equal(actualFirstOutputChildID, expectedFirstOutputChildID);
+    equal(actualFirstFilteredChildID, expectedFirstFilteredChildID);
     numberOfItems = 0;
     output.innerHTML = '';
     filtered.innerHTML = '';

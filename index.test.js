@@ -369,3 +369,145 @@ test("checking multiple items filters them and not others", () => {
 
 console.groupEnd();
 // End of filtering checked off item tests
+
+// Up and down arrow tests
+console.group("Movement Tests");
+
+test("Up arrow moves item up one space", () => {
+        
+    //add input
+    const input = document.querySelector("#toDoInput");
+    input.value = "TEST ITEM 1";
+
+    //submit item
+    const submitButton = document.querySelector("#addSubmit");
+    submitButton.click();
+
+    //add and submit two more items
+    input.value = "TEST ITEM 2";
+    submitButton.click();
+
+    // Move second item up 1 position
+    const upArrow = document.querySelectorAll(".arrowBox")[2];
+    upArrow.children[0].click();
+
+    // First element is the second entry added
+    const actualFirstChild = output.firstElementChild.id;
+    const expectedFirstChild = 'item-2';
+    equal(actualFirstChild, expectedFirstChild);
+
+    // Second element is the first element added
+    const actualSecondChild = output.lastElementChild.id;
+    const expectedSecondChild = 'item-1';
+    equal(actualSecondChild, expectedSecondChild);
+
+    // Reset DOM
+    form.reset();
+    output.innerHTML = "";
+    numberOfItems = 0;
+});
+
+test("Down arrow moves item down one space", () => {
+        
+    //add input
+    const input = document.querySelector("#toDoInput");
+    input.value = "TEST ITEM 1";
+
+    //submit item
+    const submitButton = document.querySelector("#addSubmit");
+    submitButton.click();
+
+    //add and submit two more items
+    input.value = "TEST ITEM 2";
+    submitButton.click();
+
+    // Move second item up 1 position
+    const upArrow = document.querySelectorAll(".arrowBox")[1];
+    upArrow.children[0].click();
+
+    // First element is the second entry added
+    const actualFirstChild = output.firstElementChild.id;
+    const expectedFirstChild = 'item-2';
+    equal(actualFirstChild, expectedFirstChild);
+
+    // Second element is the first element added
+    const actualSecondChild = output.lastElementChild.id;
+    const expectedSecondChild = 'item-1';
+    equal(actualSecondChild, expectedSecondChild);
+
+    // Reset DOM
+    form.reset();
+    output.innerHTML = "";
+    numberOfItems = 0;
+});
+
+test("Item at top of list stays there if up arrow pressed", () => {
+        
+    //add input
+    const input = document.querySelector("#toDoInput");
+    input.value = "TEST ITEM 1";
+
+    //submit item
+    const submitButton = document.querySelector("#addSubmit");
+    submitButton.click();
+
+    //add and submit two more items
+    input.value = "TEST ITEM 2";
+    submitButton.click();
+
+    // Move second item up 1 position
+    const upArrow = document.querySelectorAll(".arrowBox")[0];
+    upArrow.children[0].click();
+
+    // First element is the second entry added
+    const actualFirstChild = output.firstElementChild.id;
+    const expectedFirstChild = 'item-1';
+    equal(actualFirstChild, expectedFirstChild);
+
+    // Second element is the first element added
+    const actualSecondChild = output.lastElementChild.id;
+    const expectedSecondChild = 'item-2';
+    equal(actualSecondChild, expectedSecondChild);
+
+    // Reset DOM
+    form.reset();
+    output.innerHTML = "";
+    numberOfItems = 0;
+});
+
+test("Item at bottom of list stays there if down arrow pressed", () => {
+        
+    //add input
+    const input = document.querySelector("#toDoInput");
+    input.value = "TEST ITEM 1";
+
+    //submit item
+    const submitButton = document.querySelector("#addSubmit");
+    submitButton.click();
+
+    //add and submit two more items
+    input.value = "TEST ITEM 2";
+    submitButton.click();
+
+    // Move second item up 1 position
+    const upArrow = document.querySelectorAll(".arrowBox")[3];
+    upArrow.children[0].click();
+
+    // First element is the second entry added
+    const actualFirstChild = output.firstElementChild.id;
+    const expectedFirstChild = 'item-1';
+    equal(actualFirstChild, expectedFirstChild);
+
+    // Second element is the first element added
+    const actualSecondChild = output.lastElementChild.id;
+    const expectedSecondChild = 'item-2';
+    equal(actualSecondChild, expectedSecondChild);
+
+    // Reset DOM
+    form.reset();
+    output.innerHTML = "";
+    numberOfItems = 0;
+});
+
+console.groupEnd();
+// End of up and down arrow tests

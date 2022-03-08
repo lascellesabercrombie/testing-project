@@ -2,7 +2,18 @@
     color: black;
     background-color: #FFDC9A;
     font-family: "Lato", sans-serif;
-    margin: 0.5em;
+    margin-bottom: 1rem;
+    padding: 0;
+}
+
+button {
+    padding: 0.3rem;
+    margin: 0.3rem;
+}
+
+.bigger-horizontal-margins {
+    margin-left: 2rem;
+    margin-right: 2rem;
 }
 
 .hide {
@@ -28,6 +39,7 @@
 
 .title-text {
     color: #1D6036;
+    font-size: 3em;
 }
 
 /* Source: https://www.w3.org/WAI/tutorials/forms/labels/#note-on-hiding-elements */
@@ -45,14 +57,38 @@
 article {
     display: flex;
     flex-wrap: wrap;
-    align-items: center;
+    align-items: baseline;
     justify-content: space-around;
     border: black solid 2px;
     background-color: white;
-    padding: 0.1em;
+    padding: 0;
+}
+
+article > * {
+    border: solid black 2px;
 }
 
 article > h2 {
     background-color: inherit;
+
 }
 
+form {
+    border: black solid 2px;
+    max-width: 80vw; 
+    /* max-width: 20rem; */
+    justify-content: space-between;
+    padding-top: 0.5rem;
+    padding-left: 0.5rem;
+}
+
+form > input {
+    border: none;
+    font-size: 1.3em;
+}
+
+/* form > button {
+    border: solid black 1px;
+    padding: 0;
+    font-size: 1.2em;
+} */

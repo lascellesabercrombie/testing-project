@@ -34,14 +34,14 @@
         </div>
         <div id="filtered"></div>
         <template id="toDoTemplate" class="hide">
-            <article name="toDoItem">
+            <article name="toDoItem" class="bigger-horizontal-margins">
                 <label for="checkbox" class="visuallyhidden">Mark task as complete</label>
-                <input type="checkbox" id="checkbox">
+                <input type="checkbox" id="checkbox" class="checkboxes">
                 <section class="arrowBox"><h2> &#8593;</h2></section>
                 <h2></h2>
                 <section class="arrowBox"><h2> &#8595; </h2></section>
-                <button type="submit" name="deleteBtn">
-                    <span aria-hidden="true">X</span>
+                <button type="submit" name="deleteBtn" class="deleteButton">
+                    <span aria-hidden="true" class="cross">&#xd7;</span>
                     <span class="visuallyhidden">Delete item from list</span></button>
             </article>
         </template>

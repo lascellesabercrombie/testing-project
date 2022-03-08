@@ -257,5 +257,39 @@ test("checking an item twice returns it from filtered div to output", () => {
     form.reset();
 })
 
+test("checking multiple items filters them and not others", () => {
+    
+    const input = document.querySelector("#toDoInput");
+    input.value = "TEST ITEM 1";
+
+    const filtered = document.querySelector("#filtered");
+
+    const submitButton = document.querySelector("#addSubmit");
+    submitButton.click();
+
+    input.value = "TEST ITEM 2";
+    submitButton.click();
+
+    input.value = "TEST ITEM 3";
+    submitButton.click();
+
+    const checkButton1 = document.querySelector("#item-1 > input[type=checkbox]");
+    const checkButton2 = document.querySelector("#item-2 > input[type=checkbox]");
+    checkButton1.click();
+    checkButton2.click();
+
+    const actualOutputChildren = output.childElementCount;
+    const expectedOutputChildren = 1;
+    const actualFilteredChildren = filtered.childElementCount;
+    const expectedFilteredChildren = 2;
+
+    equal(actualOutputChildren, expectedOutputChildren);
+    equal(actualFilteredChildren, expectedFilteredChildren);
+    numberOfItems = 0;
+    output.innerHTML = '';
+    filtered.innerHTML = '';
+    form.reset();
+})
+
 console.groupEnd();
 // End of filtering checked off item tests

@@ -1,5 +1,8 @@
 * {
     color: black;
+    background-color: #FFDC9A;
+    font-family: "Lato", sans-serif;
+    margin: 0.5em;
 }
 
 .hide {

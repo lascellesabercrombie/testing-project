@@ -1,6 +1,7 @@
 const output = document.querySelector("output");
 const form = document.querySelector("form");
 const input = document.querySelector("input");
+const filtered = document.querySelector("#filtered")
 
 let numberOfItems = 0;
 
@@ -31,13 +32,16 @@ function addToDoItem(event) {
 }
 
 function noteChecker (e) {
-    if (e.target.checked) {
-        
-        document.querySelector(`#item-${numberOfItems} > h2`).classList.add("checked");
-    }
-    else{
-        document.querySelector(`#item-${numberOfItems} > h2`).classList.remove("checked");
-    }
+        let note = e.composedPath()[1];
+        document.querySelector(`#${note.id} > h2`).classList.toggle("checked");
+        if (e.target.checked){
+            note.remove();
+            filtered.append(note);
+        }
+        else{
+            note.remove();
+            output.append(note);
+        }        
 }
 
 

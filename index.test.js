@@ -51,6 +51,63 @@ console.groupEnd();
 // Checking off items tests
 console.group("Checked Items Tests");
 
+test("Clicking checkbox checks item", () => {
+    const input = document.querySelector("#toDoInput");
+    input.value = "TEST ITEM 1"
+
+    const submitButton = document.querySelector("#addSubmit");
+    submitButton.click();
+
+    const checkButton = document.querySelector("#item-1 > input[type=checkbox]")
+    checkButton.click();
+
+    equal(checkButton.checked, true);
+    checkButton.click();
+    numberOfItems = 0;
+    output.innerHTML = '';
+    form.reset();
+})
+
+test("Clicking checkbox a second time unchecks it", () => {
+    const input = document.querySelector("#toDoInput");
+    input.value = "TEST ITEM 1"
+
+    const submitButton = document.querySelector("#addSubmit");
+    submitButton.click();
+
+    const checkButton = document.querySelector("#item-1 > input[type=checkbox]")
+    checkButton.click();
+    checkButton.click();
+    equal(checkButton.checked, false);
+    numberOfItems = 0;
+    output.innerHTML = '';
+    form.reset();
+})
+
+test("With multiple items, checking one items strikes through the correct item", () => {
+    const input = document.querySelector("#toDoInput");
+    input.value = "TEST ITEM 1"
+
+    const submitButton = document.querySelector("#addSubmit");
+    submitButton.click();
+
+    // Add test item 2
+    input.value = "TEST ITEM 2"
+
+    // Submit test item 2
+    submitButton.click();
+    const input1Title = document.querySelector("#item-1 > h2")
+    const input2Title = document.querySelector("#item-2 > h2")
+    const checkButton = document.querySelector("#item-1 > input[type=checkbox]")
+    checkButton.click();
+    equal(input1Title.classList.contains("checked"), true);
+    equal(input2Title.classList.contains("checked"), false);
+    checkButton.click();
+    numberOfItems = 0;
+    output.innerHTML = '';
+    form.reset();
+})
+
 console.groupEnd();
 // End of checking off items tests
 

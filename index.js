@@ -52,7 +52,7 @@ function noteChecker (e) {
 function deleteToDoItem(e) {
     let parentElement = e.composedPath()[1];
     parentElement.remove();
-}
+};
 
 // function addStave() {
 //     if(filtered.childElementCount>0){

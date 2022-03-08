@@ -15,6 +15,7 @@ test("Submitting a new task adds it to the list", () => {
     equal(result.textContent, 'TEST ITEM')
 
     //resets the output and the number of items
+    form.reset();
     numberOfItems = 0;
     output.innerHTML = '';
 });
@@ -40,6 +41,8 @@ test("Submitting 2 new tasks adds them to the list", () => {
     equal(result1.textContent, 'TEST ITEM 1');
     equal(result2.textContent, 'TEST ITEM 2');
 
+    // Resets Dom
+    form.reset();
     numberOfItems = 0;
     output.innerHTML = '';
 });
@@ -143,6 +146,7 @@ test("Deleting the only entry removes it from the list", () => {
     const input = document.querySelector("#toDoInput");
     input.value = "TEST ITEM 1";
 
+    // Submit test item
     const submitButton = document.querySelector("#addSubmit");
     submitButton.click();
 
@@ -150,15 +154,19 @@ test("Deleting the only entry removes it from the list", () => {
     const deleteBtn = document.querySelectorAll("button")[1]
     deleteBtn.click();
 
+    // Checking number of children of the output after deletion
     const actual = output.childElementCount;
-    const expected = 0
+    const expected = 0;
     equal(actual, expected);
 
+    // Reset DOM
+    form.reset();
     numberOfItems = 0;
     output.innerHTML = '';
 });
 
 test("Deleting both entries removes them from the list", () => {
+    // Get input and submission button to manipulate
     const input = document.querySelector("#toDoInput");
     const submitButton = document.querySelector("#addSubmit");
 
@@ -180,16 +188,19 @@ test("Deleting both entries removes them from the list", () => {
     deleteBtn1.click();
     deleteBtn2.click();
 
-
+    // Testing the number of children output has to check all have been deleted
     const actual = output.childElementCount;
-    const expected = 0
+    const expected = 0;
     equal(actual, expected);
 
+    // Reset DOM
+    form.reset();
     numberOfItems = 0;
     output.innerHTML = '';
 });
 
 test("Deleting the first entries removes it from the list but leaves subsequent entries", () => {
+    // Getting the input and submission areas to manipulate
     const input = document.querySelector("#toDoInput");
     const submitButton = document.querySelector("#addSubmit");
 
@@ -209,16 +220,21 @@ test("Deleting the first entries removes it from the list but leaves subsequent 
     const deleteBtn = document.querySelectorAll("button")[1];
     deleteBtn.click();
 
+    // Checking that the number of elements in the output has decreased to 1
     const actualChildren = output.childElementCount;
-    const expectedChildren = 1
-    const actualFirstChildID = output.firstElementChild.id;
-    const expectedFirstChildID = 'item-2'
-    
-    console.log("Number of elements")
-    equal(actualChildren, expectedChildren);
-    console.log("First Element id")
-    equal(actualFirstChildID, expectedFirstChildID)
+    const expectedChildren = 1;
 
+    // Checking the id of the only element to check it was the first item deleted
+    const actualFirstChildID = output.firstElementChild.id;
+    const expectedFirstChildID = 'item-2';
+    
+    console.log("Number of elements");
+    equal(actualChildren, expectedChildren);
+    console.log("First Element id");
+    equal(actualFirstChildID, expectedFirstChildID);
+
+    //Reset DOM
+    form.reset();
     numberOfItems = 0;
     output.innerHTML = '';
 });

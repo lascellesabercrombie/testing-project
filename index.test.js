@@ -205,5 +205,57 @@ console.groupEnd();
 // Filtering checked off items tests
 console.group("Filter checked Tests");
 
+test("checking an item moves it from output to filtered div", () => {
+    
+    const input = document.querySelector("#toDoInput");
+    input.value = "TEST ITEM 1";
+    const filtered = document.querySelector("#filtered");
+
+    const submitButton = document.querySelector("#addSubmit");
+    submitButton.click();
+
+    const checkButton = document.querySelector("#item-1 > input[type=checkbox]")
+    checkButton.click();
+
+    const actualOutputChildren = output.childElementCount;
+    const expectedOutputChildren = 0;
+
+    const actualFilteredChildren = filtered.childElementCount;
+    const expectedFilteredChildren = 1;
+
+    equal(actualOutputChildren, expectedOutputChildren);
+    equal(actualFilteredChildren, expectedFilteredChildren);
+    numberOfItems = 0;
+    output.innerHTML = '';
+    filtered.innerHTML = '';
+    form.reset();
+})
+
+test("checking an item twice returns it from filtered div to output", () => {
+    
+    const input = document.querySelector("#toDoInput");
+    input.value = "TEST ITEM 1";
+    const filtered = document.querySelector("#filtered");
+
+    const submitButton = document.querySelector("#addSubmit");
+    submitButton.click();
+
+    const checkButton = document.querySelector("#item-1 > input[type=checkbox]")
+    checkButton.click();
+    checkButton.click();
+
+    const actualOutputChildren = output.childElementCount;
+    const expectedOutputChildren = 1;
+    const actualFilteredChildren = filtered.childElementCount;
+    const expectedFilteredChildren = 0;
+
+    equal(actualOutputChildren, expectedOutputChildren);
+    equal(actualFilteredChildren, expectedFilteredChildren);
+    numberOfItems = 0;
+    output.innerHTML = '';
+    filtered.innerHTML = '';
+    form.reset();
+})
+
 console.groupEnd();
 // End of filtering checked off item tests

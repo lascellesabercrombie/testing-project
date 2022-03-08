@@ -14,12 +14,12 @@
     <main>
         <header><h1 class="title-text">NotePerfect</h1></header>
         <form>
-            <label for="toDoInput">Add to do list item</label>
-            <input id="toDoInput" type="text"/>
+            <label for="toDoInput" class="visuallyhidden">Add to do list item</label>
+            <input id="toDoInput" type="text" placeholder="Write a note..."/>
 
             <button type="submit" id="addSubmit">Add Item</button>
         </form>
-        
+
         <div class="stave">
             <div class="measure"></div>
         </div>
@@ -30,9 +30,10 @@
         <div id="filtered"></div>
         <template id="toDoTemplate" class="hide">
             <article name="toDoItem">
+                <label for="checkbox" class="visuallyhidden">Mark task as complete</label>
+                <input type="checkbox" id="checkbox">
                 <h2></h2>
-                <label for="checkbox">Mark complete</label>
-                <input type="checkbox">
+          
                 <button type="submit" name="deleteBtn">Delete Item</button>
             </article>
         </template>

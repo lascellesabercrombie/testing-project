@@ -46,6 +46,14 @@ button {
     font-size: 3em;
     margin-top: 1rem;
     font-style: italic;
+    text-align: center;
+}
+
+form > button {
+    background-color: white;
+}
+form > button > * {
+    background-color: white;
 }
 
 /* Source: https://www.w3.org/WAI/tutorials/forms/labels/#note-on-hiding-elements */
@@ -84,9 +92,11 @@ article > h2 {
 
 form {
     border: black solid 2px;
+    /* display: flex;
+    flex-wrap: wrap; */
     max-width: 80vw; 
     /* max-width: 20rem; */
-    justify-content: space-between;
+    /* justify-content: space-between; */
     padding-top: 0.5rem;
     padding-left: 0.5rem;
 }
@@ -105,6 +115,7 @@ form > input {
 .arrowBox {
     display:inline-block;
     font-size: larger;
+    border: black solid 2px;
 }
 
 input.checkboxes {
@@ -112,22 +123,11 @@ input.checkboxes {
     height: 1.5rem;
 }
 
-button.deleteButton {
-    width: 1.5rem;
-    height: 1.5rem;
-    background-color:#1D6036;
-}
-
-/* button.deleteButton > * {
-    background-color: inherit;
-    color:#FFDC9A;
-    font-size: 1.5rem;
-} */
-
 .cross{
+    position: relative;
     background-color: inherit;
-    color:#FFDC9A;
-    font-size: 1.5rem;
-    /* padding: 1rem; */
-    margin: 0.1rem;
+    font-family: inherit;
 }
+
+
+

@@ -1,14 +1,17 @@
+
+
 * {
     color: black;
     background-color: #FFDC9A;
     font-family: "Lato", sans-serif;
-    margin-bottom: 1rem;
+    margin: 0rem 0rem 2rem 0rem;
     padding: 0;
 }
 
 button {
     padding: 0.3rem;
     margin: 0.3rem;
+    border-radius: 10%;
 }
 
 .bigger-horizontal-margins {
@@ -22,6 +25,7 @@ button {
 
 .checked {
     text-decoration: line-through;
+    color:#1D6036;
 }
 
 /* Credit: https://codepen.io/32bitkid/details/Ihciy */
@@ -40,6 +44,8 @@ button {
 .title-text {
     color: #1D6036;
     font-size: 3em;
+    margin-top: 1rem;
+    font-style: italic;
 }
 
 /* Source: https://www.w3.org/WAI/tutorials/forms/labels/#note-on-hiding-elements */
@@ -57,6 +63,7 @@ button {
 article {
     display: flex;
     flex-wrap: wrap;
+    max-width: 80vw;
     align-items: baseline;
     justify-content: space-around;
     border: black solid 2px;
@@ -65,12 +72,14 @@ article {
 }
 
 article > * {
-    border: solid black 2px;
+    /* border: solid black 2px; */
+    align-items: baseline;
+    margin-top: 1rem;
 }
 
 article > h2 {
     background-color: inherit;
-
+    padding: 0.2rem 0.5rem 0.2rem 0.5rem;
 }
 
 form {
@@ -92,3 +101,33 @@ form > input {
     padding: 0;
     font-size: 1.2em;
 } */
+/* #item-1 > section:nth-child(5) > h2 */
+.arrowBox {
+    display:inline-block;
+    font-size: larger;
+}
+
+input.checkboxes {
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+button.deleteButton {
+    width: 1.5rem;
+    height: 1.5rem;
+    background-color:#1D6036;
+}
+
+/* button.deleteButton > * {
+    background-color: inherit;
+    color:#FFDC9A;
+    font-size: 1.5rem;
+} */
+
+.cross{
+    background-color: inherit;
+    color:#FFDC9A;
+    font-size: 1.5rem;
+    /* padding: 1rem; */
+    margin: 0.1rem;
+}

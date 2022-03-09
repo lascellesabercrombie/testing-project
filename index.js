@@ -24,7 +24,8 @@ function addToDoItem(event) {
     const downArrow = arrows[1];
 
     domFragment.querySelector("article").setAttribute("id", `item-${numberOfItems}`);
-    domFragment.querySelectorAll("h2")[1].textContent = toDoItem;
+    domFragment.querySelector("h2").textContent = toDoItem;
+    deleteBtn.setAttribute("id", `delete-${numberOfItems}`)
     deleteBtn.addEventListener('click', deleteToDoItem);
     checkbox.addEventListener('change', noteChecker);
     upArrow.addEventListener("click", moveUp);
@@ -50,7 +51,12 @@ function noteChecker (e) {
 
 
 function deleteToDoItem(e) {
-    let parentElement = e.composedPath()[1];
+    let parentElementNumber = e.composedPath()[0].id.substring(7,8);
+    if (!parentElementNumber) {
+        parentElementNumber = e.composedPath()[1].id.substring(7,8);
+    }
+    const parentElementId = `item-${parentElementNumber}`
+    const parentElement = document.querySelector(`#${parentElementId}`)
     parentElement.remove();
 };
 
@@ -68,14 +74,14 @@ function deleteToDoItem(e) {
 // document.addEventListener("click", addStave);
 
 function moveUp(e) {
-    let parentElement = e.composedPath()[2];
+    let parentElement = e.composedPath()[1];
     if (parentElement.previousElementSibling !== null) {
         parentElement.parentNode.insertBefore(parentElement, parentElement.previousElementSibling);
     };
 };
 
 function moveDown(e) {
-    let parentElement = e.composedPath()[2];
+    let parentElement = e.composedPath()[1];
     if (parentElement.nextElementSibling !== null) {
         parentElement.parentNode.insertBefore(parentElement.nextElementSibling, parentElement);
     };

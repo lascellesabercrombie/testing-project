@@ -389,7 +389,7 @@ test("Up arrow moves item up one space", () => {
 
     // Move second item up 1 position
     const upArrow = document.querySelectorAll(".arrowBox")[2];
-    upArrow.children[0].click();
+    upArrow.click();
 
     // First element is the second entry added
     const actualFirstChild = output.firstElementChild.id;
@@ -423,7 +423,7 @@ test("Down arrow moves item down one space", () => {
 
     // Move second item up 1 position
     const upArrow = document.querySelectorAll(".arrowBox")[1];
-    upArrow.children[0].click();
+    upArrow.click();
 
     // First element is the second entry added
     const actualFirstChild = output.firstElementChild.id;
@@ -457,7 +457,7 @@ test("Item at top of list stays there if up arrow pressed", () => {
 
     // Move second item up 1 position
     const upArrow = document.querySelectorAll(".arrowBox")[0];
-    upArrow.children[0].click();
+    upArrow.click();
 
     // First element is the second entry added
     const actualFirstChild = output.firstElementChild.id;
@@ -491,7 +491,7 @@ test("Item at bottom of list stays there if down arrow pressed", () => {
 
     // Move second item up 1 position
     const upArrow = document.querySelectorAll(".arrowBox")[3];
-    upArrow.children[0].click();
+    upArrow.click();
 
     // First element is the second entry added
     const actualFirstChild = output.firstElementChild.id;

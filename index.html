@@ -5,30 +5,44 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="./styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
     <title>Testing-Project</title>
 </head>
 <body>
     <main>
-        <header><h1>To Do List</h1></header>
-        <form>
-            <label for="toDoInput">Add to do list item</label>
-            <input id="toDoInput" type="text"/>
+        <header><h1 class="title-text bigger-horizontal-margins">NotePerfect</h1></header>
+        <form class="bigger-horizontal-margins">
+            <label for="toDoInput" class="visuallyhidden">Add to do list item</label>
+            <input required id="toDoInput" type="text" placeholder="Write a note..."/>
 
-            <button type="submit" id="addSubmit">Add Item</button>
+            <button type="submit" id="addSubmit">
+                <span aria-hidden="true">Add</span>
+                <span class="visuallyhidden">Add item to list</span>
+            </button>
         </form>
+
+        <div class="stave">
+            <div class="measure"></div>
+        </div>
         <output>
 
         </output>
-        <p>///</p>
+        <div class="stave">
+            <div class="measure"></div>
+        </div>
         <div id="filtered"></div>
         <template id="toDoTemplate" class="hide">
-            <article name="toDoItem">
+            <article name="toDoItem" class="bigger-horizontal-margins">
+                <label for="checkbox" class="visuallyhidden">Mark task as complete</label>
+                <input type="checkbox" id="checkbox" class="checkboxes">
                 <section class="arrowBox"><h2> &#8593;</h2></section>
                 <h2></h2>
                 <section class="arrowBox"><h2> &#8595; </h2></section>
-                <label for="checkbox">Mark complete</label>
-                <input type="checkbox">
-                <button type="submit" name="deleteBtn">Delete Item</button>
+                <button type="submit" name="deleteBtn" class="close">
+                    <span aria-hidden="true">Delete</span>
+                    <span class="visuallyhidden">Delete item from list</span></button>
             </article>
         </template>
     </main>

@@ -1,7 +1,133 @@
+
+
+* {
+    color: black;
+    background-color: #FFDC9A;
+    font-family: "Lato", sans-serif;
+    margin: 0rem 0rem 2rem 0rem;
+    padding: 0;
+}
+
+button {
+    padding: 0.3rem;
+    margin: 0.3rem;
+    border-radius: 10%;
+}
+
+.bigger-horizontal-margins {
+    margin-left: 2rem;
+    margin-right: 2rem;
+}
+
 .hide {
     display: none;
 }
 
 .checked {
     text-decoration: line-through;
+    color:#1D6036;
 }
+
+/* Credit: https://codepen.io/32bitkid/details/Ihciy */
+.stave {
+    font-size: 0;
+    background-image: linear-gradient(180deg, #999 0, #999 1px, transparent 1px, transparent 8px, #999 8px, #999 9px, transparent 9px, transparent 16px, #999 16px, #999 17px, transparent 17px, transparent 24px, #999 24px, #999 25px, transparent 25px, transparent 32px, #999 32px, #999 33px, transparent 33px);
+    background-size: 100% 80px;
+}
+
+.measure {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 45px;
+}
+
+.title-text {
+    color: #1D6036;
+    font-size: 3em;
+    margin-top: 1rem;
+    font-style: italic;
+    text-align: center;
+}
+
+form > button {
+    background-color: white;
+}
+form > button > * {
+    background-color: white;
+}
+
+/* Source: https://www.w3.org/WAI/tutorials/forms/labels/#note-on-hiding-elements */
+.visuallyhidden {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+  }
+
+article {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 80vw;
+    align-items: baseline;
+    justify-content: space-around;
+    border: black solid 2px;
+    background-color: white;
+    padding: 0;
+}
+
+article > * {
+    /* border: solid black 2px; */
+    align-items: baseline;
+    margin-top: 1rem;
+}
+
+article > h2 {
+    background-color: inherit;
+    padding: 0.2rem 0.5rem 0.2rem 0.5rem;
+}
+
+form {
+    border: black solid 2px;
+    /* display: flex;
+    flex-wrap: wrap; */
+    max-width: 80vw; 
+    /* max-width: 20rem; */
+    /* justify-content: space-between; */
+    padding-top: 0.5rem;
+    padding-left: 0.5rem;
+}
+
+form > input {
+    border: none;
+    font-size: 1.3em;
+}
+
+/* form > button {
+    border: solid black 1px;
+    padding: 0;
+    font-size: 1.2em;
+} */
+/* #item-1 > section:nth-child(5) > h2 */
+.arrowBox {
+    display:inline-block;
+    font-size: larger;
+    border: black solid 2px;
+}
+
+input.checkboxes {
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+.cross{
+    position: relative;
+    background-color: inherit;
+    font-family: inherit;
+}
+
+
+

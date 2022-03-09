@@ -54,6 +54,19 @@ function deleteToDoItem(e) {
     parentElement.remove();
 };
 
+// function addStave() {
+//     if(filtered.childElementCount>0){
+//         console.log('x');
+//         let staveDiv = document.createElement('div');
+//         let measureDiv = document.createElement('div');
+//         measureDiv.classList.add("measure");
+//         staveDiv.classList.add("stave");
+//         staveDiv.append(measureDiv);
+//         filtered.prepend(staveDiv);
+//     }
+// }
+// document.addEventListener("click", addStave);
+
 function moveUp(e) {
     let parentElement = e.composedPath()[2];
     if (parentElement.previousElementSibling !== null) {

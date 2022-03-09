@@ -4,15 +4,15 @@ console.group("Adding Tests");
 test("Submitting a new task adds it to the list", () => {
     // Add test item
     const input = document.querySelector("#toDoInput");
-    input.value = "TEST ITEM"
+    input.value = "TEST ITEM 1"
 
     //submit test item
     const submitButton = document.querySelector("#addSubmit");
     submitButton.click();
 
     // Looks at the inner html of the items name
-    const result = document.querySelector("#item-1 > h2");
-    equal(result.textContent, 'TEST ITEM')
+    const result = document.querySelector("h2");
+    equal(result.textContent, 'TEST ITEM 1')
 
     //resets the output and the number of items
     form.reset();
@@ -36,8 +36,8 @@ test("Submitting 2 new tasks adds them to the list", () => {
     submitButton.click();
 
     // Check results in the HTML
-    const result1 = document.querySelector("#item-1 > h2");
-    const result2 = document.querySelector("#item-2 > h2");
+    const result1 = document.querySelectorAll("h2")[0];
+    const result2 = document.querySelectorAll("h2")[1];
     equal(result1.textContent, 'TEST ITEM 1');
     equal(result2.textContent, 'TEST ITEM 2');
 

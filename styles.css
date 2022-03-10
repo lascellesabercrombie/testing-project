@@ -31,7 +31,7 @@ button {
 /* Credit: https://codepen.io/32bitkid/details/Ihciy */
 .stave {
     font-size: 0;
-    background-image: linear-gradient(180deg, #999 0, #999 1px, transparent 1px, transparent 8px, #999 8px, #999 9px, transparent 9px, transparent 16px, #999 16px, #999 17px, transparent 17px, transparent 24px, #999 24px, #999 25px, transparent 25px, transparent 32px, #999 32px, #999 33px, transparent 33px);
+    background-image: linear-gradient(180deg, #999 1px, transparent 8px, #999 1px, transparent 1px, transparent 8px, #999 8px, #999 9px, transparent 9px, transparent 16px, #999 16px, #999 17px, transparent 17px, transparent 24px, #999 24px, #999 25px, transparent 25px, transparent 32px, #999 32px, #999 33px, transparent 33px);
     background-size: 100% 80px;
 }
 
@@ -114,11 +114,14 @@ form > input {
     font-size: 1.3em;
 }
 
-/* form > button {
-    border: solid black 1px;
-    padding: 0;
-    font-size: 1.2em;
-} */
+form.close {
+    border: none;
+    background-color: inherit;
+}
+
+form > button, form > button > * {
+    background-color: #FFDC9A;
+}
 /* #item-1 > section:nth-child(5) > h2 */
 .arrowBox {
     display:inline-block;

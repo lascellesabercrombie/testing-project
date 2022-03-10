@@ -1,7 +1,7 @@
 //Creating an event to tell the script when the tests have finished working
 const testsComplete = new Event('TESTS-COMPLETE');
 //Adding items tests
-console.group("Adding Tests");
+console.groupCollapsed("Adding Tests");
 
 test("Submitting a new task adds it to the list", () => {
     numberOfItems = 0
@@ -56,7 +56,7 @@ console.groupEnd();
 // End of adding items tests
 
 // Checking off items tests
-console.group("Checked Items Tests");
+console.groupCollapsed("Checked Items Tests");
 
 test("Clicking checkbox checks item", () => {
     //add test item
@@ -144,7 +144,7 @@ console.groupEnd();
 // End of checking off items tests
 
 // Deleting items tests
-console.group("Deleting Tests");
+console.groupCollapsed("Deleting Tests");
 
 test("Deleting the only entry removes it from the list", () => {
     // Add a test Item
@@ -246,7 +246,7 @@ console.groupEnd();
 // End of deleting items tests
 
 // Filtering checked off items tests
-console.group("Filter checked Tests");
+console.groupCollapsed("Filter checked Tests");
 
 test("checking an item moves it from output to filtered div", () => {
     
@@ -375,7 +375,7 @@ console.groupEnd();
 // End of filtering checked off item tests
 
 // Up and down arrow tests
-console.group("Movement Tests");
+console.groupCollapsed("Movement Tests");
 
 test("Up arrow moves item up one space", () => {
         
@@ -427,8 +427,8 @@ test("Down arrow moves item down one space", () => {
     submitButton.click();
 
     // Move second item up 1 position
-    const upArrow = document.querySelectorAll(".arrowBox")[1];
-    upArrow.click();
+    const downArrow = document.querySelectorAll(".arrowBox")[1];
+    downArrow.click();
 
     // First element is the second entry added
     const actualFirstChild = output.firstElementChild.id;
@@ -520,19 +520,191 @@ test("Item at bottom of list stays there if down arrow pressed", () => {
 console.groupEnd();
 // End of up and down arrow tests
 
+// Accessibility-Tests
+console.groupCollapsed("Accessibility Tests")
 
-/******************** Reset The Page After All Tests Here:) ********************/
+test("Add item works with enter key when focussed", () => {
+    numberOfItems = 0
+    // Add test item
+    const input = document.querySelector("#toDoInput");
+    input.value = "TEST ITEM 1"
+
+    //submit test item
+    const submitButton = document.querySelector("#addSubmit");
+    submitButton.focus();
+    document.querySelector("body").dispatchEvent(new KeyboardEvent('keypress', {'keyCode': '13'}));
+
+    // Looks at the inner html of the items name
+    const result = document.querySelector("h2");
+    equal(result.textContent, 'TEST ITEM 1')
+
+    //resets the output and the number of items
+    form.reset();
+    document.getElementById("item-1").remove()
+    numberOfItems = 0;
+})
+
+test("Checkbox works with enter key when focussed", () => {
+    
+    //add input
+    const input = document.querySelector("#toDoInput");
+    input.value = "TEST ITEM 1";
+
+    //access filtered section
+    const filtered = document.querySelector("#filtered");
+    
+    //submit
+    const submitButton = document.querySelector("#addSubmit");
+    submitButton.click();
+
+    //check input
+    const checkButton = document.querySelector("#item-1 > input[type=checkbox]")
+    //checkButton.focus();
+    checkButton.focus()
+    document.querySelector("body").dispatchEvent(new KeyboardEvent('keypress', {'keyCode': '13'}));
+
+    //count items in output and filtered
+    const actualOutputChildren = output.childElementCount;
+    const expectedOutputChildren = 0;
+
+    const actualFilteredChildren = filtered.childElementCount;
+    const expectedFilteredChildren = 1;
+
+    //test
+    equal(actualOutputChildren, expectedOutputChildren);
+    equal(actualFilteredChildren, expectedFilteredChildren);
+    
+    //reset
+    numberOfItems = 0;
+    filtered.innerHTML = '';
+    form.reset();
+});
+
+test("Up arrow works with enter key when focussed", () => {
+            
+    //add input
+    const input = document.querySelector("#toDoInput");
+    input.value = "TEST ITEM 1";
+
+    //submit item
+    const submitButton = document.querySelector("#addSubmit");
+    submitButton.click();
+
+    //add and submit two more items
+    input.value = "TEST ITEM 2";
+    submitButton.click();
+
+    // Move second item up 1 position
+    const upArrow = document.querySelectorAll(".arrowBox")[2];
+    upArrow.focus();
+    document.querySelector("body").dispatchEvent(new KeyboardEvent('keypress', {'keyCode': '13'}));
+
+    // First element is the second entry added
+    const actualFirstChild = output.firstElementChild.id;
+    const expectedFirstChild = 'item-2';
+    equal(actualFirstChild, expectedFirstChild);
+
+    // Second element is the first element added
+    const actualSecondChild = output.lastElementChild.id;
+    const expectedSecondChild = 'item-1';
+    equal(actualSecondChild, expectedSecondChild);
+
+    // Reset DOM
+    form.reset();
+    document.getElementById("item-1").remove();
+    document.getElementById("item-2").remove();
+    numberOfItems = 0;
+});
+
+test("Down arrow works with enter key when focussed", () => {
+            
+    //add input
+    const input = document.querySelector("#toDoInput");
+    input.value = "TEST ITEM 1";
+
+    //submit item
+    const submitButton = document.querySelector("#addSubmit");
+    submitButton.click();
+
+    //add and submit two more items
+    input.value = "TEST ITEM 2";
+    submitButton.click();
+
+    // Move second item up 1 position
+    const downArrow = document.querySelectorAll(".arrowBox")[1];
+    downArrow.focus();
+    document.querySelector("body").dispatchEvent(new KeyboardEvent('keypress', {'keyCode': '13'}));
+
+    // First element is the second entry added
+    const actualFirstChild = output.firstElementChild.id;
+    const expectedFirstChild = 'item-2';
+    equal(actualFirstChild, expectedFirstChild);
+
+    // Second element is the first element added
+    const actualSecondChild = output.lastElementChild.id;
+    const expectedSecondChild = 'item-1';
+    equal(actualSecondChild, expectedSecondChild);
+
+    // Reset DOM
+    form.reset();
+    document.getElementById("item-1").remove();
+    document.getElementById("item-2").remove();
+    numberOfItems = 0;
+});
+
+test("Delete Button works with enter key when focussed", () => {
+    
+    // Add a test Item
+    const input = document.querySelector("#toDoInput");
+    input.value = "TEST ITEM 1";
+
+    // Submit test item
+    const submitButton = document.querySelector("#addSubmit");
+    submitButton.click();
+
+    // Delete the item
+    const deleteBtn = document.querySelectorAll("button")[1]
+    deleteBtn.focus();
+    document.querySelector("body").dispatchEvent(new KeyboardEvent('keypress', {'keyCode': '13'}));
+
+    // Checking number of children of the output after deletion
+    const actual = output.childElementCount;
+    const expected = 0;
+    equal(actual, expected);
+
+    // Reset DOM
+    form.reset();
+    numberOfItems = 0;
+});
+
+console.groupEnd();
+// End of Accessibility tests
 
 // Removing the tests from the local storage and reseting item number to the largest id in the storage
 delete localNames[1];
 delete localNames[2];
 delete localNames[3];
 localStorage.setItem("localNames", JSON.stringify(localNames));
-if (isNaN(Number(Object.keys(localNames)[0]))) {
+if (isNaN(Number(Object.keys(localNames)[1]))) {
     /****************** Need to increase when a test has more than 3 inputs **************************/
     numberOfItems = 3
 } else { 
     numberOfItems = Number(Object.keys(localNames)[Object.keys(localNames).length -1]);
 }
+
+// Adding item to test that the local storage is working
+localNames[0] = 'TEST ITEM 0'
+
 //Telling the script that the tests are completed to finish loading the page
 document.dispatchEvent(testsComplete)
+
+// Local Storage Tests
+console.groupCollapsed("Local Storage")
+
+test("Check that TEST ITEM 0 Appears in the Load after testsComplete dispatches", () => {
+    const actualFirstChild = output.firstElementChild.id;
+    const expectedFirstChild = 'item-0';
+    equal(actualFirstChild, expectedFirstChild);
+    
+    document.getElementById("item-0").remove();
+})

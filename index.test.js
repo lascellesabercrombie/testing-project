@@ -1,7 +1,10 @@
+//Creating an event to tell the script when the tests have finished working
+const testsComplete = new Event('TESTS-COMPLETE');
 //Adding items tests
 console.group("Adding Tests");
 
 test("Submitting a new task adds it to the list", () => {
+    numberOfItems = 0
     // Add test item
     const input = document.querySelector("#toDoInput");
     input.value = "TEST ITEM 1"
@@ -16,8 +19,8 @@ test("Submitting a new task adds it to the list", () => {
 
     //resets the output and the number of items
     form.reset();
+    document.getElementById("item-1").remove()
     numberOfItems = 0;
-    output.innerHTML = '';
 });
 
 test("Submitting 2 new tasks adds them to the list", () => {
@@ -44,7 +47,8 @@ test("Submitting 2 new tasks adds them to the list", () => {
     // Resets Dom
     form.reset();
     numberOfItems = 0;
-    output.innerHTML = '';
+    document.getElementById("item-1").remove();
+    document.getElementById("item-2").remove();
 });
 
 
@@ -73,7 +77,7 @@ test("Clicking checkbox checks item", () => {
     //reset
     checkButton.click();
     numberOfItems = 0;
-    output.innerHTML = '';
+    document.getElementById("item-1").remove();
     form.reset();
 })
 
@@ -96,7 +100,7 @@ test("Clicking checkbox a second time unchecks it", () => {
 
     //reset
     numberOfItems = 0;
-    output.innerHTML = '';
+    document.getElementById("item-1").remove();
     form.reset();
 })
 
@@ -131,7 +135,8 @@ test("With multiple items, checking one items strikes through the correct item",
     //reset
     checkButton.click();
     numberOfItems = 0;
-    output.innerHTML = '';
+    document.getElementById("item-1").remove();
+    document.getElementById("item-2").remove();
     form.reset();
 })
 
@@ -162,7 +167,6 @@ test("Deleting the only entry removes it from the list", () => {
     // Reset DOM
     form.reset();
     numberOfItems = 0;
-    output.innerHTML = '';
 });
 
 test("Deleting both entries removes them from the list", () => {
@@ -196,7 +200,6 @@ test("Deleting both entries removes them from the list", () => {
     // Reset DOM
     form.reset();
     numberOfItems = 0;
-    output.innerHTML = '';
 });
 
 test("Deleting the first entries removes it from the list but leaves subsequent entries", () => {
@@ -236,7 +239,7 @@ test("Deleting the first entries removes it from the list but leaves subsequent 
     //Reset DOM
     form.reset();
     numberOfItems = 0;
-    output.innerHTML = '';
+    document.getElementById("item-2").remove();
 });
 
 console.groupEnd();
@@ -275,7 +278,6 @@ test("checking an item moves it from output to filtered div", () => {
     
     //reset
     numberOfItems = 0;
-    output.innerHTML = '';
     filtered.innerHTML = '';
     form.reset();
 })
@@ -310,7 +312,7 @@ test("checking an item twice returns it from filtered div to output", () => {
 
     //reset
     numberOfItems = 0;
-    output.innerHTML = '';
+    document.getElementById("item-1").remove();
     filtered.innerHTML = '';
     form.reset();
 })
@@ -362,7 +364,9 @@ test("checking multiple items filters them and not others", () => {
     
     //reset
     numberOfItems = 0;
-    output.innerHTML = '';
+    document.getElementById("item-1").remove();
+    document.getElementById("item-2").remove();
+    document.getElementById("item-3").remove();
     filtered.innerHTML = '';
     form.reset();
 })
@@ -403,7 +407,8 @@ test("Up arrow moves item up one space", () => {
 
     // Reset DOM
     form.reset();
-    output.innerHTML = "";
+    document.getElementById("item-1").remove();
+    document.getElementById("item-2").remove();
     numberOfItems = 0;
 });
 
@@ -437,7 +442,8 @@ test("Down arrow moves item down one space", () => {
 
     // Reset DOM
     form.reset();
-    output.innerHTML = "";
+    document.getElementById("item-1").remove();
+    document.getElementById("item-2").remove();
     numberOfItems = 0;
 });
 
@@ -471,7 +477,8 @@ test("Item at top of list stays there if up arrow pressed", () => {
 
     // Reset DOM
     form.reset();
-    output.innerHTML = "";
+    document.getElementById("item-1").remove();
+    document.getElementById("item-2").remove();
     numberOfItems = 0;
 });
 
@@ -505,9 +512,27 @@ test("Item at bottom of list stays there if down arrow pressed", () => {
 
     // Reset DOM
     form.reset();
-    output.innerHTML = "";
+    document.getElementById("item-1").remove();
+    document.getElementById("item-2").remove();
     numberOfItems = 0;
 });
 
 console.groupEnd();
 // End of up and down arrow tests
+
+
+/******************** Reset The Page After All Tests Here:) ********************/
+
+// Removing the tests from the local storage and reseting item number to the largest id in the storage
+delete localNames[1];
+delete localNames[2];
+delete localNames[3];
+localStorage.setItem("localNames", JSON.stringify(localNames));
+if (isNaN(Number(Object.keys(localNames)[0]))) {
+    /****************** Need to increase when a test has more than 3 inputs **************************/
+    numberOfItems = 3
+} else { 
+    numberOfItems = Number(Object.keys(localNames)[Object.keys(localNames).length -1]);
+}
+//Telling the script that the tests are completed to finish loading the page
+document.dispatchEvent(testsComplete)

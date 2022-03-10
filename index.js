@@ -18,14 +18,17 @@ if (localNames === null) {
     localNames = {}
 } else {
     localNames = JSON.parse(localNames)
-    for (let key in localNames) {
-        addToDoItem(undefined, localNames[key], key)
-    }
 }
 if (numberOfItems === null) {
     numberOfItems = 0
 }
-
+// Only load the local storage after the tests have completed so they don't affect results
+document.addEventListener("TESTS-COMPLETE", loadLocal)
+function loadLocal() {
+    for (let key in localNames) {
+        addToDoItem(undefined, localNames[key], key)
+    }   
+}
 
 form.addEventListener("submit", (event) => addToDoItem(event));
 
@@ -38,14 +41,14 @@ function addToDoItem(event, localValue, localKey) {
     let toDoItem = localValue;
     let itemNumber = localKey;
 
-    // Normal part
+    // When normal addition to the list
     if(toDoItem === undefined) {
         toDoItem = input.value;
-    }
-    if (localKey === undefined) {
         numberOfItems +=1;
-        localStorage.setItem("numberOfItems", numberOfItems)
-        itemNumber = numberOfItems
+        itemNumber = numberOfItems;
+        localNames[numberOfItems] = toDoItem;
+        localStorage.setItem(`localNames`, JSON.stringify(localNames));
+        localStorage.setItem("numberOfItems", itemNumber)
     }
 
     const template = document.querySelector("template");
@@ -67,9 +70,6 @@ function addToDoItem(event, localValue, localKey) {
 
     output.appendChild(domFragment);
 
-    localNames[numberOfItems] = toDoItem;
-    localStorage.setItem(`localNames`, JSON.stringify(localNames));
-
     form.reset();
 }
 
@@ -85,7 +85,7 @@ function noteChecker (e, itemNumber) {
         else{
             note.remove();
             output.append(note);
-            localNames[itemNumber] = toDoItem;
+            localNames[itemNumber] = note.children[3].innerHTML
             localStorage.setItem(`localNames`, JSON.stringify(localNames));
         }        
 }

@@ -532,7 +532,7 @@ test("Add item works with enter key when focussed", () => {
     //submit test item
     const submitButton = document.querySelector("#addSubmit");
     submitButton.focus();
-    document.querySelector("body").dispatchEvent(new KeyboardEvent('keypress', {'keyCode': '13'}));
+    document.querySelector("body").dispatchEvent(new KeyboardEvent('keydown', {'key': 'Enter'}));
 
     // Looks at the inner html of the items name
     const result = document.querySelector("h2");
@@ -561,7 +561,7 @@ test("Checkbox works with enter key when focussed", () => {
     const checkButton = document.querySelector("#item-1 > input[type=checkbox]")
     //checkButton.focus();
     checkButton.focus()
-    document.querySelector("body").dispatchEvent(new KeyboardEvent('keypress', {'keyCode': '13'}));
+    document.querySelector("body").dispatchEvent(new KeyboardEvent('keydown', {'key': 'Enter'}));
 
     //count items in output and filtered
     const actualOutputChildren = output.childElementCount;
@@ -597,7 +597,7 @@ test("Up arrow works with enter key when focussed", () => {
     // Move second item up 1 position
     const upArrow = document.querySelectorAll(".arrowBox")[2];
     upArrow.focus();
-    document.querySelector("body").dispatchEvent(new KeyboardEvent('keypress', {'keyCode': '13'}));
+    document.querySelector("body").dispatchEvent(new KeyboardEvent('keydown', {'key': 'Enter'}));
 
     // First element is the second entry added
     const actualFirstChild = output.firstElementChild.id;
@@ -633,7 +633,7 @@ test("Down arrow works with enter key when focussed", () => {
     // Move second item up 1 position
     const downArrow = document.querySelectorAll(".arrowBox")[1];
     downArrow.focus();
-    document.querySelector("body").dispatchEvent(new KeyboardEvent('keypress', {'keyCode': '13'}));
+    document.querySelector("body").dispatchEvent(new KeyboardEvent('keydown', {'key': 'Enter'}));
 
     // First element is the second entry added
     const actualFirstChild = output.firstElementChild.id;
@@ -665,7 +665,7 @@ test("Delete Button works with enter key when focussed", () => {
     // Delete the item
     const deleteBtn = document.querySelectorAll("button")[1]
     deleteBtn.focus();
-    document.querySelector("body").dispatchEvent(new KeyboardEvent('keypress', {'keyCode': '13'}));
+    document.querySelector("body").dispatchEvent(new KeyboardEvent('keydown', {'key': 'Enter'}));
 
     // Checking number of children of the output after deletion
     const actual = output.childElementCount;

@@ -130,3 +130,11 @@ function moveDown(e) {
         parentElement.parentNode.insertBefore(parentElement.nextElementSibling, parentElement);
     };
 };
+
+// Allows user to use move up and down when highlighting element and pressing enter
+function handleEnter(e){
+    var keycode = (e.keyCode ? e.keyCode : e.which);
+    if (keycode == '13') {
+      document.activeElement.click();
+    }
+}

@@ -62,6 +62,9 @@ function addToDoItem(event, localValue, localKey) {
 
     domFragment.querySelector("article").setAttribute("id", `item-${itemNumber}`);
     domFragment.querySelector("h2").textContent = toDoItem;
+    checkbox.setAttribute("id", `checkbox-${itemNumber}`);
+    domFragment.querySelector(`#item-${itemNumber} > label`).setAttribute("for", checkbox.id)
+    
     deleteBtn.setAttribute("id", `delete-${itemNumber}`)
     deleteBtn.addEventListener('submit', (event) => deleteToDoItem(event, itemNumber));
     checkbox.addEventListener('change', (event) => noteChecker(event, itemNumber));

@@ -85,6 +85,18 @@ form > button, form > button > * {
 
 /*output and its contents*/
 
+.grid {
+    display: grid;
+    width: 90vw;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+    justify-content: space-between;
+    gap: 1rem 1.5rem;
+}
+
 article {
     display: flex;
     flex-wrap: wrap;
@@ -100,7 +112,6 @@ article {
 article > * {
     align-items: baseline;
     margin-top: 1rem;
-    
 }
 
 article > h2 {
@@ -108,6 +119,7 @@ article > h2 {
     padding: 0.2rem 0.5rem 0.2rem 0.5rem;
     word-break: break-all;
     max-width: 30vw;
+    font-size: inherit;
 }
 
 
